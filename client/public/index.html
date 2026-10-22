@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carnicería Delicias - Ventas</title>
+  <link rel="stylesheet" href="../src/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Carnicería "Delicias" - Andahuaylas</h1>
+      <select id="select-local">
+        <option value="1">Local 1 - Av. Perú</option>
+        <option value="2">Local 2 - Mercado Central</option>
+      </select>
+    </header>
+
+    <main>
+      <h2>Registrar Venta POS</h2>
+      <form id="form-venta">
+        <label>Medio de Pago:</label>
+        <select id="medio_pago">
+          <option value="Efectivo">Efectivo</option>
+          <option value="Yape">Yape</option>
+        </select>
+
+        <label>Tipo Entrega:</label>
+        <select id="tipo_entrega">
+          <option value="Mostrador">Mostrador</option>
+          <option value="Delivery">Delivery</option>
+        </select>
+
+        <label>Modalidad:</label>
+        <select id="tipo_venta">
+          <option value="Por Menor">Por Menor</option>
+          <option value="Por Mayor">Por Mayor</option>
+        </select>
+
+        <h3>Detalle del Producto</h3>
+        <input type="number" id="id_producto" placeholder="ID Producto (Ej: 1)" required>
+        <input type="number" step="0.01" id="cantidad_kg" placeholder="Cantidad en Kg" required>
+        <input type="number" step="0.01" id="precio_unitario" placeholder="Precio x Kg (S/)" required>
+
+        <button type="submit">Completar Venta</button>
+      </form>
+      <div id="mensaje"></div>
+    </main>
+  </div>
+  <script src="../src/app.js"></script>
+</body>
+</html>
