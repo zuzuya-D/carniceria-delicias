@@ -1,0 +1,19 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build the API Docker image
+      run: docker build ./api --file ./api/Dockerfile --tag delicias-api:latest
+
+    - name: Build the Client Docker image
+      run: docker build ./client --file ./client/Dockerfile --tag delicias-client:latest
