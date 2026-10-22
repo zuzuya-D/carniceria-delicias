@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # 1. Base de Datos Relacional PostgreSQL
+  db:
+    image: postgres:15-alpine
+    container_name: delicias_db
+    restart: always
+    environment:
+      POSTGRES_DB: delicias_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: supersecretpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Ejecuta automáticamente los scripts de schema y seed al iniciar por primera vez
+      - ./database/init:/docker-entrypoint-initdb.d
+      - ./database/seeds:/docker-entrypoint-initdb.d/seeds
+
+  # 2. Servidor Backend (API REST Node.js)
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: delicias_api
+    restart: always
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      DATABASE_URL: postgres://postgres:supersecretpassword@db:5432/delicias_db
+    depends_on:
+      - db
+
+  # 3. Servidor Frontend (Cliente Web Nginx)
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: delicias_client
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
