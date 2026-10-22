@@ -1,0 +1,16 @@
+name: CI/CD Pipeline Carniceria Delicias
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Chequear código
+        uses: actions/checkout@v3
+
+      - name: Probar construcción Docker
+        run: |
+          docker compose build
