@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Carnicería Delicias</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container" style="max-width: 400px; margin-top: 50px;">
+    <h2>Iniciar Sesión</h2>
+    <form id="form-login">
+      <label>Usuario:</label>
+      <input type="text" id="login-usuario" placeholder="Ej: admin" required>
+      
+      <label>Contraseña:</label>
+      <input type="password" id="login-password" placeholder="••••••••" required>
+      
+      <button type="submit">Ingresar al Sistema</button>
+    </form>
+    <div id="mensaje-login"></div>
+  </div>
+
+  <script>
+    document.getElementById('form-login').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const usuario = document.getElementById('login-usuario').value;
+      const password = document.getElementById('login-password').value;
+
+      try {
+        const res = await fetch('http://localhost:4000/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ usuario, password })
+        });
+        const result = await res.json();
+
+        if (res.ok) {
+          // Guardar credenciales y token en el navegador
+          localStorage.setItem('token', result.token);
+          localStorage.setItem('usuario', JSON.stringify(result.usuario));
+          
+          // Redirigir según el rol
+          if (result.usuario.rol === 'administrador') {
+            window.location.href = 'admin.html';
+          } else {
+            window.location.href = 'index.html';
+          }
+        } else {
+          document.getElementById('mensaje-login').innerText = result.error || 'Error de credenciales';
+        }
+      } catch (err) {
+        document.getElementById('mensaje-login').innerText = 'Error al conectar con la API';
+      }
+    });
+  </script>
+</body>
+</html>
