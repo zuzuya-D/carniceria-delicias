@@ -1,0 +1,205 @@
+
+
+:root {
+  --admin-dark: #0f172a;         /* Encabezados y barras */
+  --admin-primary: #1e40af;      /* Azul Corporativo */
+  --admin-primary-hover: #1e3a8a;
+  --admin-accent: #d97706;       /* Naranja Destacados */
+  --admin-accent-hover: #b45309;
+  --admin-danger: #dc2626;       /* Rojo Salir/Eliminar */
+  --admin-danger-hover: #b91c1c;
+  --bg-dashboard: #f8fafc;      /* Fondo General */
+  --card-bg: #ffffff;            /* Fondo de Módulos */
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-light: #e2e8f0;
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg-dashboard);
+  color: var(--text-main);
+  padding: 30px 20px;
+  min-height: 100vh;
+}
+
+/* Contenedor Principal Ancho Tipo Dashboard */
+.container {
+  max-width: 950px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  padding: 35px;
+  border: 1px solid var(--border-light);
+}
+
+/* Header Corporativo del Panel */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 3px solid var(--admin-dark);
+}
+
+header h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--admin-dark);
+  letter-spacing: -0.5px;
+}
+
+/* Botón de Cerrar Sesión Destacado */
+#btn-logout {
+  background-color: var(--admin-danger);
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
+}
+
+#btn-logout:hover {
+  background-color: var(--admin-danger-hover);
+  transform: translateY(-1px);
+}
+
+/* Tarjetas Módulo (Secciones) */
+section {
+  background: #f1f5f9;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  border-left: 5px solid var(--admin-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+section:nth-of-type(2) {
+  border-left-color: var(--admin-accent);
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--admin-dark);
+  margin-bottom: 20px;
+}
+
+/* Formulario en Rejilla Responsiva */
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* Ajuste de inputs a ancho completo cuando aplica */
+form input[type="text"]:first-child {
+  grid-column: span 2;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: var(--text-main);
+  transition: all 0.2s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--admin-primary);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.15);
+}
+
+/* Botones de Envío de Formulario */
+button[type="submit"] {
+  grid-column: span 2;
+  background-color: var(--admin-primary);
+  color: #ffffff;
+  border: none;
+  padding: 13px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+
+section:nth-of-type(2) button[type="submit"] {
+  background-color: var(--admin-accent);
+}
+
+button[type="submit"]:hover {
+  background-color: var(--admin-primary-hover);
+  transform: translateY(-1px);
+}
+
+section:nth-of-type(2) button[type="submit"]:hover {
+  background-color: var(--admin-accent-hover);
+}
+
+/* Divisor elegante */
+hr {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin: 30px 0;
+}
+
+/* Alertas de Estado del Servidor */
+#mensaje-admin {
+  margin-top: 20px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Adaptación para pantallas móviles */
+@media (max-width: 680px) {
+  .container {
+    padding: 20px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  form input[type="text"]:first-child,
+  button[type="submit"] {
+    grid-column: span 1;
+  }
+}
