@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Administración - Carnicería Delicias</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Panel de Administración</h1>
+      <button id="btn-logout" style="background-color: #dc2626;">Cerrar Sesión</button>
+    </header>
 
+    <main>
+      <!-- Sección 1: Crear Empleados / Accesos -->
+      <section>
+        <h2>Registrar Nuevo Empleado</h2>
+        <form id="form-empleado">
+          <input type="text" id="emp-nombres" placeholder="Nombres Completos" required>
+          <input type="text" id="emp-telefono" placeholder="Teléfono" required>
+          <input type="text" id="emp-usuario" placeholder="Usuario de Acceso" required>
+          <input type="password" id="emp-password" placeholder="Contraseña" required>
+          <select id="emp-local">
+            <option value="1">Local 1 - Av. Perú</option>
+            <option value="2">Local 2 - Mercado Central</option>
+          </select>
+          <select id="emp-rol">
+            <option value="vendedor">Vendedor</option>
+            <option value="operario">Operario</option>
+            <option value="administrador">Administrador</option>
+          </select>
+          <button type="submit">Crear Acceso de Empleado</button>
+        </form>
+      </section>
+
+      <hr style="margin: 20px 0;">
+
+      <!-- Sección 2: Insertar Nuevos Productos/Cortes -->
+      <section>
+        <h2>Insertar Nuevo Corte a la Base de Datos</h2>
+        <form id="form-producto">
+          <input type="text" id="prod-nombre" placeholder="Nombre del Corte (Ej: T-Bone)" required>
+          <input type="text" id="prod-categoria" placeholder="Categoría (Res/Cerdo)" required>
+          <input type="number" step="0.01" id="prod-precio-menor" placeholder="Precio x Menor (S/)" required>
+          <input type="number" step="0.01" id="prod-precio-mayor" placeholder="Precio x Mayor (S/)" required>
+          <button type="submit">Guardar Producto en BD</button>
+        </form>
+      </section>
+
+      <div id="mensaje-admin"></div>
+    </main>
+  </div>
+  <script src="../src/admin.js"></script>
+</body>
+</html>
